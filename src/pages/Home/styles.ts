@@ -9,6 +9,35 @@ export const PostsList = styled.ul`
   margin-top: 3rem;
 `
 
+export const SearchForm = styled.form`
+  margin-top: 4.5rem;
+  & > div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    & > h2 {
+      font-size: 1.125rem;
+      color: ${(props) => props.theme['base-subtitle']};
+    }
+    & > span {
+      font-size: 0.875rem;
+      color: ${(props) => props.theme['base-span']};
+    }
+  }
+  input {
+    background: ${(props) => props.theme['base-input']};
+    border: 1px solid ${(props) => props.theme['base-border']};
+    border-radius: 6px;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    color: ${(props) => props.theme['base-text']};
+    &::placeholder {
+      color: ${(props) => props.theme['base-label']};
+    }
+  }
+`
+
 // MASONRY LAYOUT
 //
 // export const PostsList = styled.ul`

@@ -19,7 +19,7 @@ const ISSUES = [
   },
   {
     id: 3,
-    date: '2022-11-23T23:35:39.431Z',
+    date: '2022-11-20T23:35:39.431Z',
     title: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
     content:
       'Lorem ipsum dolor sit, amet consectetur adipisicing elit. A blanditiis excepturi et quia fugiat laboriosam!Lorem ipsum dolor sit, amet consectetur adipisicing elit. A blanditiis excepturi et quia fugiat laboriosam!'
@@ -53,6 +53,13 @@ export const Home = () => {
   return (
     <S.HomeContainer>
       <HomeHeader />
+      <S.SearchForm action="">
+        <div>
+          <h2>Publicações</h2>
+          <span>6 publicações</span>
+        </div>
+        <input type="text" placeholder="Buscar conteúdo" />
+      </S.SearchForm>
       <S.PostsList>
         {issues.map((issue) => (
           <PostCard key={issue.id} post={issue} />

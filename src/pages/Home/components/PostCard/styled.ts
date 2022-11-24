@@ -9,6 +9,11 @@ export const CardContainer = styled.li`
   max-height: 16rem;
   max-width: calc(50% -1rem);
   overflow: hidden;
+  border: 2px solid transparent;
+  &:hover {
+    transition: border 0.1s;
+    border: 2px solid ${(props) => props.theme['base-label']};
+  }
 `
 export const CardContent = styled.div`
   overflow: hidden;

@@ -1,3 +1,9 @@
+import { PostHeader } from './PostHeader'
+
 export const Post = () => {
-  return <div>Post</div>
+  return (
+    <div>
+      <PostHeader />
+    </div>
+  )
 }
