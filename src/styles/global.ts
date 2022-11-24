@@ -26,4 +26,7 @@ a {
   text-decoration: none;
   color: inherit;
 }
+ul, ol {
+  list-style: none;
+}
 `
