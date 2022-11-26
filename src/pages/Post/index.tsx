@@ -1,32 +1,36 @@
 import ReactMarkdown from 'react-markdown'
-// import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import * as stylePrism from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 import { PostHeader } from './PostHeader'
 import * as S from './styles'
 
-const SyntaxHighlight = ({ props, children }: any) => (
-  <SyntaxHighlighter style={stylePrism.dracula} language="javascript" {...props}>
-    {children}
-  </SyntaxHighlighter>
-)
+const SyntaxHighlight = ({ props, children }: any) => {
+  return (
+    <SyntaxHighlighter style={oneDark} language="typescript" {...props}>
+      {children}
+    </SyntaxHighlighter>
+  )
+}
 
 export const Post = () => {
   return (
     <div>
       <PostHeader />
-      {post.title}
-      {/* <S.BodyContainer> */}
-      <ReactMarkdown
-        components={{
-          code({ node, inline, children, className, ...props }) {
-            return <SyntaxHighlight {...props}>{children}</SyntaxHighlight>
-          }
-        }}>
-        {post.body}
-      </ReactMarkdown>
-      {/* </S.BodyContainer> */}
+      <S.BodyContainer>
+        <ReactMarkdown
+          components={{
+            code({ children, ...props }) {
+              return (
+                <SyntaxHighlight className="codeStyle" {...props}>
+                  {children}
+                </SyntaxHighlight>
+              )
+            }
+          }}>
+          {post.body}
+        </ReactMarkdown>
+      </S.BodyContainer>
     </div>
   )
 }

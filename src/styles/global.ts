@@ -5,7 +5,24 @@ export const GLobalStyle = createGlobalStyle`
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: ${(props) => `${props.theme['base-label']} ${props.theme['base-background']}`} ;
 }
+
+*::-webkit-scrollbar {
+  width: 15px;
+  height: 15px;
+}
+
+*::-webkit-scrollbar-track {
+  background: ${(props) => props.theme['base-input']};
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color:${(props) => props.theme['base-label']};
+  border: solid  2px ${(props) => props.theme['base-background']};
+}
+
 
 :focus {
   outline: 0;
