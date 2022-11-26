@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom'
-
 import styled from 'styled-components'
 
 export const HomeHeader = styled.header`
@@ -20,6 +18,7 @@ export const UserCard = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 0.5rem;
+  flex: 1;
   h2 {
     font-size: 1.5rem;
   }
@@ -46,7 +45,7 @@ export const UserInfo = styled.span`
   }
 `
 
-export const GitHubLink = styled(Link)`
+export const GitHubLink = styled.div`
   color: ${(props) => props.theme.blue};
   font-size: 0.75rem;
   display: flex;

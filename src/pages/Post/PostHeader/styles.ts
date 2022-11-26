@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom'
-
 import styled from 'styled-components'
 
 export const PostHeader = styled.header`
@@ -15,6 +13,7 @@ export const PostCard = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 0.5rem;
+  flex: 1;
 `
 export const CardTop = styled.div`
   display: flex;
@@ -39,7 +38,7 @@ export const PostInfo = styled.span`
   }
 `
 
-export const PostLink = styled(Link)`
+export const PostLink = styled.div`
   color: ${(props) => props.theme.blue};
   font-size: 0.75rem;
   display: flex;
