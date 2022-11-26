@@ -1,3 +1,4 @@
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { BrowserRouter } from 'react-router-dom'
 
 import { ThemeProvider } from 'styled-components'
@@ -7,12 +8,15 @@ import { GLobalStyle } from './styles/global'
 import { defaultTheme } from './styles/themes/default'
 
 export function App() {
+  const queryClient = new QueryClient()
   return (
     <ThemeProvider theme={defaultTheme}>
-      <BrowserRouter>
-        <Router />
-        <GLobalStyle />
-      </BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <Router />
+          <GLobalStyle />
+        </BrowserRouter>
+      </QueryClientProvider>
     </ThemeProvider>
   )
 }
