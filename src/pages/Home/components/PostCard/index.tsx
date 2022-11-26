@@ -13,13 +13,15 @@ export const PostCard: React.FC<PostCardProps> = ({ post: { content, date, title
   return (
     <Link to={`/${id}`}>
       <S.CardContainer>
-        <S.CardContent>
-          <S.CardHeader>
-            <h3>{title}</h3>
-            <span>{formatDateWithSuffix(new Date(date))}</span>
-          </S.CardHeader>
-          <S.Text>{content}</S.Text>
-        </S.CardContent>
+        <article>
+          <S.CardContent>
+            <S.CardHeader>
+              <h3>{title}</h3>
+              <span>{formatDateWithSuffix(new Date(date))}</span>
+            </S.CardHeader>
+            <S.Text>{content}</S.Text>
+          </S.CardContent>
+        </article>
       </S.CardContainer>
     </Link>
   )
