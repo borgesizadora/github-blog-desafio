@@ -7,7 +7,6 @@ export const HeaderContainer = styled.div`
   align-items: center;
   overflow: hidden;
   position: relative;
-  z-index: -1;
 `
 export const Cover = styled.img`
   flex-shrink: 0;

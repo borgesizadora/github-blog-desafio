@@ -7,3 +7,7 @@ export const formatDateWithSuffix = (date: Date) => {
     locale: ptBR
   })
 }
+export const dataFormatter = new Intl.DateTimeFormat('pt-BR', {
+  timeStyle: 'short',
+  dateStyle: 'short'
+})

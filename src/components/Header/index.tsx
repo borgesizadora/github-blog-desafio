@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import cover from '~/assets/cover.svg'
 import logo from '~/assets/logo.svg'
 
@@ -6,7 +8,9 @@ export const Header = () => {
   return (
     <S.HeaderContainer>
       <S.Cover src={cover} alt="" />
-      <S.Logo src={logo} alt="" />
+      <Link to="/">
+        <S.Logo src={logo} alt="" />
+      </Link>
     </S.HeaderContainer>
   )
 }

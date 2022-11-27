@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-import { formatDateWithSuffix } from '~/utils/formatters'
+import { dataFormatter, formatDateWithSuffix } from '~/utils/formatters'
 
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import {
@@ -53,7 +53,9 @@ export const PostHeader = ({
           </S.PostInfo>
           <S.PostInfo>
             <FontAwesomeIcon icon={faCalendarDay} />
-            <span>{formatDateWithSuffix(date)}</span>
+            <time title={dataFormatter.format(new Date(date))} dateTime={date.toString()}>
+              {formatDateWithSuffix(new Date(date))}
+            </time>
           </S.PostInfo>
           <S.PostInfo>
             <FontAwesomeIcon icon={faComment} />

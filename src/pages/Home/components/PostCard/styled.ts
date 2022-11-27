@@ -18,6 +18,10 @@ export const CardContainer = styled.li`
 export const CardContent = styled.div`
   overflow: hidden;
   max-height: 100%;
+  img {
+    height: 0;
+    overflow: hidden;
+  }
 `
 
 export const CardHeader = styled.header`
@@ -29,7 +33,7 @@ export const CardHeader = styled.header`
     font-size: 1.25rem;
     color: ${(props) => props.theme['base-title']};
   }
-  & > span {
+  & > time {
     white-space: nowrap;
     font-size: 0.875rem;
     color: ${(props) => props.theme['base-span']};
