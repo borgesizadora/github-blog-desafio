@@ -1,9 +1,10 @@
 import ReactMarkdown from 'react-markdown'
 import { useQuery } from 'react-query'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
+import { Loader } from '~/components/Loader'
 import { getRepoIssueById } from '~/services/issues'
 
 import { PostHeader } from './PostHeader'
@@ -18,8 +19,11 @@ const SyntaxHighlight = ({ props, children }: any) => {
 }
 
 export const Post = () => {
+  const navigate = useNavigate()
   const { id } = useParams()
-  const { data: issueData } = useQuery(['issues', id], () => getRepoIssueById(id!))
+  const { data: issueData } = useQuery(['issues', id], () => getRepoIssueById(id!), {
+    onError: () => navigate('/not-found', { replace: true })
+  })
 
   return issueData && id ? (
     <div>
@@ -46,6 +50,6 @@ export const Post = () => {
       </S.BodyContainer>
     </div>
   ) : (
-    <div>Loading...</div>
+    <Loader />
   )
 }

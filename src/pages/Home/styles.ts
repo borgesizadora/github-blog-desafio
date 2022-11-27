@@ -37,6 +37,13 @@ export const SearchForm = styled.form`
     }
   }
 `
+export const NoPostsFount = styled.div`
+  padding: 4rem 0;
+  display: flex;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+`
 
 // MASONRY LAYOUT
 //

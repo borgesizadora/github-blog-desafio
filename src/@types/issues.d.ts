@@ -18,3 +18,9 @@ export interface IssueType {
 }
 
 export type IssuesType = IssueType[]
+
+export interface SearchedIssueList {
+  total_count: number
+  incomplete_results: boolean
+  items: IssuesType
+}

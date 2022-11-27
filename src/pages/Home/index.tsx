@@ -1,37 +1,64 @@
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { useQuery } from 'react-query'
 
-import { getRepoIssues } from '~/services/issues'
+import { Loader } from '~/components/Loader'
+import { searchIssue } from '~/services/issues'
 import { getUserByUserName } from '~/services/user'
+import * as zod from 'zod'
+
+import { zodResolver } from '@hookform/resolvers/zod'
 
 import { HomeHeader } from './components/HomeHeader'
 import { PostCard } from './components/PostCard'
 import * as S from './styles'
 
+const searchFormSchema = zod.object({
+  query: zod.string()
+})
+
+type SearchFormInputs = zod.infer<typeof searchFormSchema>
+
 export const Home = () => {
+  const [searchQuery, setSearchQuery] = useState('')
   const { data: userData } = useQuery('user', () => getUserByUserName())
-  const { data: issuesData } = useQuery('issues', () => getRepoIssues())
+  const { data: issuesSearchData } = useQuery(['issuesSearch', searchQuery], () =>
+    searchIssue(searchQuery)
+  )
+  const { register, handleSubmit } = useForm<SearchFormInputs>({
+    resolver: zodResolver(searchFormSchema)
+  })
+
+  const handleSearchIssues = (data: SearchFormInputs) => {
+    setSearchQuery(data.query)
+  }
 
   return userData ? (
     <S.HomeContainer>
       <HomeHeader user={userData} />
-      <S.SearchForm action="">
+      <S.SearchForm onSubmit={handleSubmit(handleSearchIssues)}>
         <div>
           <h2>Publicações</h2>
-          <span>
-            {issuesData?.length} {issuesData?.length === 1 ? 'publicação' : 'publicações'}
-          </span>
+          {issuesSearchData?.items && (
+            <span>
+              {issuesSearchData?.items?.length || 'Nenhuma'}
+              {issuesSearchData?.items?.length <= 1 ? ' publicação' : ' publicações'}
+            </span>
+          )}
         </div>
-        <input type="text" placeholder="Buscar conteúdo" />
+        <input type="text" placeholder="Buscar conteúdo" {...register('query')} />
       </S.SearchForm>
-      {issuesData && (
+      {issuesSearchData?.items && issuesSearchData?.items.length > 0 ? (
         <S.PostsList>
-          {issuesData?.map((issue) => (
+          {issuesSearchData?.items?.map((issue) => (
             <PostCard key={issue.id} post={issue} />
           ))}
         </S.PostsList>
+      ) : (
+        <S.NoPostsFount>Nenhum post encontrado</S.NoPostsFount>
       )}
     </S.HomeContainer>
   ) : (
-    <div>Loading...</div>
+    <Loader />
   )
 }
